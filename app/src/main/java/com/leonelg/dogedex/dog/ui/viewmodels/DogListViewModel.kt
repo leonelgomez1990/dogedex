@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.leonelg.dogedex.dog.data.DogRepository
 import com.leonelg.dogedex.dog.domain.Dog
+import com.leonelg.dogedex.dog.usecases.GetDogsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DogListViewModel @Inject constructor(
-    private val dogRepository: DogRepository
+    private val getDogsUseCase: GetDogsUseCase
 ) : ViewModel() {
 
     private val _dogList = MutableLiveData<List<Dog>>()
@@ -25,7 +25,7 @@ class DogListViewModel @Inject constructor(
 
     private fun downloadDogs() {
         viewModelScope.launch {
-            _dogList.value = dogRepository.downloadDogs()
+            _dogList.value = getDogsUseCase.invoke()
         }
     }
 }

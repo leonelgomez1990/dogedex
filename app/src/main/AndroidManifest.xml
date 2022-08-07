@@ -4,7 +4,7 @@
     package="com.leonelg.dogedex">
 
     <application
-        android:name=".dog.core.MainApplication"
+        android:name=".core.MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

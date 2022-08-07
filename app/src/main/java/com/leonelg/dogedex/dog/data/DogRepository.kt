@@ -1,12 +1,15 @@
 package com.leonelg.dogedex.dog.data
 
 import com.leonelg.dogedex.dog.domain.Dog
+import com.leonelg.dogedex.dog.interfaces.IDogRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class DogRepository @Inject constructor() {
-    suspend fun downloadDogs(): List<Dog> {
+class DogRepository @Inject constructor(
+) : IDogRepository {
+
+    override suspend fun getDogCollection(): List<Dog> {
         return withContext(Dispatchers.IO) {
             getFakeDogs()
         }
