@@ -3,8 +3,9 @@ package com.leonelg.dogedex.dog.data
 import com.leonelg.dogedex.dog.domain.Dog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class DogRepository {
+class DogRepository @Inject constructor() {
     suspend fun downloadDogs(): List<Dog> {
         return withContext(Dispatchers.IO) {
             getFakeDogs()

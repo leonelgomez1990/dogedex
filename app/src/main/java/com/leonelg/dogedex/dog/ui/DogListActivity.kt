@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.leonelg.dogedex.databinding.ActivityDogListBinding
 import com.leonelg.dogedex.dog.ui.adapters.DogAdapter
 import com.leonelg.dogedex.dog.ui.viewmodels.DogListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DogListActivity : AppCompatActivity() {
 
     private val dogListViewModel : DogListViewModel by viewModels()
