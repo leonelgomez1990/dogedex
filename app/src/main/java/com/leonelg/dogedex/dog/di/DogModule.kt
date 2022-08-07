@@ -1,6 +1,8 @@
 package com.leonelg.dogedex.dog.di
 
 import com.leonelg.dogedex.dog.data.DogRepository
+import com.leonelg.dogedex.dog.data.IDogDataSource
+import com.leonelg.dogedex.dog.framework.FakeDogDataSource
 import com.leonelg.dogedex.dog.interfaces.IDogRepository
 import com.leonelg.dogedex.dog.usecases.GetDogsUseCase
 import dagger.Module
@@ -13,10 +15,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DogModule {
 
+    @Provides
+    fun provideIDogDataSource(): IDogDataSource =
+        FakeDogDataSource()
+
     @Singleton
     @Provides
-    fun provideIDogRepository(): IDogRepository =
-        DogRepository()
+    fun provideIDogRepository(dogDataSource: IDogDataSource): IDogRepository =
+        DogRepository(dogDataSource)
 
     @Provides
     fun provideGetDogsUseCase(dogRepository: IDogRepository) =
